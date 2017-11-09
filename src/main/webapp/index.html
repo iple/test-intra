@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <title>Test Program</title>
+
+    <script type="text/javascript">
+        var ajax = new XMLHttpRequest();
+        function callMethod() {
+        	ajax.onreadystatechange = function() {
+                if(ajax.readyState !== 4) {
+                    return;
+                }
+                if(ajax.status === 0) {
+                    window.alert("Either there is a connection problem" 
+                            + " or server is down");
+                    return;
+                }
+                if(ajax.status >= 400) {
+                    window.alert("Problem connected to server."
+                            + " Response status: " + ajax.status);
+                    return;
+                }
+                var responseType = typeof ajax.responseType;
+                if(responseType !== 'string') {
+                    window.alert("Unpredictable response type");
+                    return;
+                }
+                var responseJson = JSON.parse(ajax.responseText);
+                alert("Message=" + responseJson.message);
+            };
+            ajax.open("GET", window.location.href, true);
+            ajax.send();
+        }
+    </script>
+</head>
+<body>
+    <div>
+        <button type="button" onclick="callMethod()">Get greedings</button>
+    </div>
+</body>
+</html>

@@ -10,11 +10,16 @@
     </session-config>
 
     <servlet>
-        <servlet-name>javax.ws.rs.core.Application</servlet-name>
-        <load-on-startup>1</load-on-startup>
+        <servlet-name>ResteasyTest</servlet-name>
+        <servlet-class>org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher</servlet-class>
+        <init-param>
+            <param-name>javax.ws.rs.Application</param-name>
+            <param-value>com.intracom.tuto.TestApplication</param-value>
+        </init-param>
     </servlet>
+
     <servlet-mapping>
-        <servlet-name>javax.ws.rs.core.Application</servlet-name>
+        <servlet-name>ResteasyTest</servlet-name>
         <url-pattern>/rest/*</url-pattern>
     </servlet-mapping>
 

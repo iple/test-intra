@@ -9,25 +9,6 @@
         <session-timeout>15</session-timeout>
     </session-config>
 
-    <!-- context-param>
-        <param-name>resteasy.scan</param-name>
-        <param-value>true</param-value>
-    </context-param>
-
-    <servlet>
-        <servlet-name>com.intracom.tuto.TestApplication</servlet-name>
-        <servlet-class>org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher</servlet-class>
-        <init-param>
-            <param-name>javax.ws.rs.Application</param-name>
-            <param-value>com.intracom.tuto.TestApplication</param-value>
-        </init-param>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>com.intracom.tuto.TestApplication</servlet-name>
-        <url-pattern>/rest/*</url-pattern>
-    </servlet-mapping-->
-
     <servlet-mapping>
         <servlet-name>javax.ws.rs.core.Application</servlet-name>
         <url-pattern>/rest/*</url-pattern>

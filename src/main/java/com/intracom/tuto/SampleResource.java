@@ -8,6 +8,7 @@ import javax.ws.rs.core.MediaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
+@Path("/main")
 public class SampleResource {
     @GET
     @Path("/greedings")

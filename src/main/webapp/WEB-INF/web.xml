@@ -8,6 +8,10 @@
     <session-config>
         <session-timeout>15</session-timeout>
     </session-config>
+    
+    <listener>
+        <listener-class>com.intracom.tuto.TopoListener</listener-class>
+    </listener>
 
     <servlet-mapping>
         <servlet-name>javax.ws.rs.core.Application</servlet-name>

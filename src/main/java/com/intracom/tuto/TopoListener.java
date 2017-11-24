@@ -20,6 +20,7 @@ public class TopoListener implements ServletContextListener {
     public void contextInitialized(ServletContextEvent sce) {
         try (Connection con = dataSource.getConnection()) {
             TransactionManager txMgr = TransactionManagerLocator.get();
+            boolean txEnded = false;
             txMgr.begin();
             try (Statement stmt = con.createStatement()){
                 stmt.execute("CREATE TABLE IF NOT EXISTS element("
@@ -32,10 +33,13 @@ public class TopoListener implements ServletContextListener {
                         + "ipb varchar(15) NOT NULL, "
                         + "CONSTRAINT link_pk PRIMARY KEY(ipa, ipb))");
                 txMgr.commit();
+                txEnded = true;
             }
-            catch(SQLException exc) {
-                txMgr.rollback();
-                throw exc;
+            finally {
+                if(!txEnded) {
+                    // Exception was thrown
+                    txMgr.rollback();
+                }
             }
         } catch (Exception e) {
             throw new RuntimeException("Initialization failed", e);
